@@ -17,7 +17,7 @@ def login_to_firebase(auth):
     return auth.sign_in_with_email_and_password(email, password)
 
 def authenticate_user(auth):
-    choice = input('Enter \"r\" to register new user or enter \"l\" to login.')
+    choice = input('Enter \"r\" to register new user or enter \"l\" to login: ')
     if choice == 'r':
         return create_firebase_user(auth)
     else:

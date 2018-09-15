@@ -9,10 +9,12 @@ db = fb.database()
 storage = fb.storage()
 
 user = authenticate_user(auth)
-print(user)
+#print(user)
 
-#Get data video/images/metadata/etc
 
+#Get data video/images/metadata/etc from an event
+
+###TEST EVENTS
 event_1 = {
     'time': time.time(),
     'metadata': {'type': 'usps delivery', 'gender': 'female'},
@@ -27,10 +29,8 @@ event_2 = {
 
 event_2_photo = './photos/amazon.png'
 
-# data to save
-#data = {
-#    "name": "Mortimer 'Morty' Smith"
-#}
 
 # Pass the user's idToken to the push method
-results = db.child("users").child(user['localId']).push(event_1, user['idToken'])
+metadata_store = db.child("users").child(user['localId']).push(event_1, user['idToken'])
+#Store the image
+media_store = storage.child('images/' + user['localId'] + '/' + str(time.time()) + '.png').put(event_1_photo, user['idToken'])
